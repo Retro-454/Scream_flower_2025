@@ -59,8 +59,11 @@ public class player : MonoBehaviour
     {
         rb.linearVelocity = movementDirection * movementSpeed;
         if(iswalking){
-            Vector3 vector3 = Vector3.left * movementDirection.x + Vector3.down * movementDirection.y;
-            Aim.rotation = Quaternion.LookRotation(Vector3.forward,vector3); 
+                // Only rotate horizontally
+        if (movementDirection.x < 0)
+            Aim.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right);
+        else if (movementDirection.x > 0)
+         Aim.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.left);
         }
 
         
@@ -76,8 +79,13 @@ public class player : MonoBehaviour
         {
             iswalking = false; 
             lastMoved = movementDirection;
-                        Vector3 vector3 = Vector3.left * lastMoved.x + Vector3.down * lastMoved.y;
-            Aim.rotation = Quaternion.LookRotation(Vector3.forward,vector3); 
+            // Only face left or right for attacks
+            if (lastMoved.x < 0){
+                Aim.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right); }
+            else if (lastMoved.x > 0){
+                Aim.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.left); // Face right
+            }
+
         }else if(moveX != 0 || moveY !=0){
             iswalking = true;  
         }
