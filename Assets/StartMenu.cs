@@ -9,6 +9,7 @@ public class StartMenu : MonoBehaviour
     public void OnPlayPressed()
     {
         SceneManager.LoadScene(mainSceneName);
+        //whos ready for halloweeknd
     }
 
     public void OnQuitPressed()
