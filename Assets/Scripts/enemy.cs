@@ -25,6 +25,9 @@ public class enemy : MonoBehaviour
     public float attduration = 0.5f;
     private Vector3 originalScale;
 
+    public WaveSpawner spawner;
+
+
 
     private void Awake()
     {
@@ -80,7 +83,7 @@ public class enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
     private IEnumerator Attack()
@@ -132,6 +135,14 @@ private void FlipTowardsPlayer()
 }
 
 
-
+public void Die()
+    {
+        if (spawner != null)
+        {
+            spawner.EnemyDied();
+            
+        }
+        Destroy(gameObject);
+    }
 }
     

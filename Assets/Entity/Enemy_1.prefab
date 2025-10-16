@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 4004337530883157462}
   - component: {fileID: 1428806351955672035}
   m_Layer: 6
-  m_Name: Enemy 1
+  m_Name: Enemy_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523219dcf7f624ef19865cfb7e193aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 0.5
+  movespeed: 2
   health: 50
   maxHealth: 2
   attackDamage: 15
@@ -353,3 +353,4 @@ MonoBehaviour:
   attCool: 2
   attackHitbox: {fileID: 6254111924665839972}
   attduration: 0.5
+  spawner: {fileID: 0}
