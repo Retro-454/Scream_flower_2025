@@ -76,7 +76,7 @@ public class enemy : MonoBehaviour
     {
         rb.linearVelocity= new Vector2(moveDirection.x,moveDirection.y)*movespeed;
     }
-    public void TakeDamge(float damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         StartCoroutine(Flash());

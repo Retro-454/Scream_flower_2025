@@ -105,10 +105,10 @@ TextureImporter:
         serializedVersion: 2
         x: 636
         y: 598
-        width: 1044
-        height: 378
+        width: 1085
+        height: 433
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -121,11 +121,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: oddesus_slash_sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 876
+        width: 112
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed193d08ec89f4a5b90b84179c0427c0
+      internalID: 1210229150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 12b3d6ba906c8445699fc6c2de22a745
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +158,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       oddesus_slash_sprite_0: 5789110007208199008
+      oddesus_slash_sprite_1: 1210229150
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

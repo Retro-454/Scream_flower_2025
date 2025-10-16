@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,7 @@ public class player : MonoBehaviour
     public Person p;
     private Rigidbody2D rb;
     private Vector2 movementDirection;
-    public Transform Aim;
+    
 
     public int health = 30;
     bool iswalking = false;
@@ -22,6 +23,7 @@ public class player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public float flashInterval = 0.1f; // How fast to flash
     private float flashTimer;
+    private bool isfacingright;
 
 
 
@@ -37,7 +39,13 @@ public class player : MonoBehaviour
     void Update()
     {
         ProcessInputs();
-        Animate();
+        if (movementDirection.x>0 && isfacingright)
+        {
+            Flip();
+        }else if (movementDirection.x<0 && !isfacingright)
+        {
+            Flip();
+        }
         if (isInvincible){   
         invincibilityTimer -= Time.deltaTime;
         flashTimer -= Time.deltaTime;
@@ -58,13 +66,7 @@ public class player : MonoBehaviour
     void FixedUpdate()
     {
         rb.linearVelocity = movementDirection * movementSpeed;
-        if(iswalking){
-                // Only rotate horizontally
-        if (movementDirection.x < 0)
-            Aim.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right);
-        else if (movementDirection.x > 0)
-         Aim.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.left);
-        }
+        
 
         
     }
@@ -74,40 +76,26 @@ public class player : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
+        movementDirection = new Vector2(moveX, moveY);
+
         // Track last moved direction when there's no input
-        if (moveX== 0 && moveY == 0 && (movementDirection.x != 0 || movementDirection.y != 0))
-        {
-            iswalking = false; 
-            lastMoved = movementDirection;
-            // Only face left or right for attacks
-            if (lastMoved.x < 0){
-                Aim.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right); }
-            else if (lastMoved.x > 0){
-                Aim.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.left); // Face right
-            }
-
-        }else if(moveX != 0 || moveY !=0){
-            iswalking = true;  
-        }
-
-        movementDirection.x = moveX;
-        movementDirection.y = moveY ;
-
-        // Normalize to prevent diagonal movement being faster
         if (movementDirection.magnitude > 1)
         {
-            movementDirection.Normalize();
-        }
+        movementDirection.Normalize();
+     }
+
+        if (movementDirection != Vector2.zero)
+     {
+        iswalking = true;
+        lastMoved = movementDirection; 
+     }
+        else
+        {
+        iswalking = false;
+     }
     }
 
-    void Animate()
-    {
-        anim.SetFloat("move x", movementDirection.x);
-        anim.SetFloat("move y", movementDirection.y);
-        anim.SetFloat("movemag", movementDirection.magnitude);
-        anim.SetFloat("lastmove x", lastMoved.x);
-        anim.SetFloat("lastmove y", lastMoved.y);
-    }
+
     public void TakeDamage(int damage)
 {
     if (isInvincible) return; // Ignore if player is invincible
@@ -132,12 +120,20 @@ private void Die()
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 }
 
-private void Flash()
-{
-    if (spriteRenderer != null)
+    private void Flash()
     {
-        spriteRenderer.enabled = !spriteRenderer.enabled; // Toggle visibility
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled; // Toggle visibility
+        }
     }
+private void Flip()
+{
+    isfacingright = !isfacingright;
+    Vector3 localScale = transform.localScale;
+    localScale.x *= -1; // Flip horizontally
+    transform.localScale = localScale;
 }
+
 
 }
