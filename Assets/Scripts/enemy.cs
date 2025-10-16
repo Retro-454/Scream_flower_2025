@@ -16,31 +16,52 @@ public class enemy : MonoBehaviour
     public Color flashColor = Color.red;
     public float flashDuration = 0.1f;
     private Color originalColor;
-    public GameObject Vase;
+
+    //
+    public float attRange = 0.1f;
+    public float attCool = 2f;
+    private bool isAttacking = false;
+    public EnemyAttackHitbox attackHitbox;
+    public float attduration = 0.5f;
+
+
     private void Awake()
     {
       rb = GetComponent<Rigidbody2D>();   
       sprite = GetComponent<SpriteRenderer>();
     }
 
- 
+
 
     void Start()
     {
-    target = GameObject.FindGameObjectWithTag("Player").transform;
-    health= maxHealth;
-    if(sprite != null){
-        originalColor = sprite.color;
-    }
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        health = maxHealth;
+        if (sprite != null)
+        {
+            originalColor = sprite.color;
+        }
 
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        if(target){
-            Vector3 direction = (target.position - transform.position).normalized;
-            moveDirection = direction;
+        if (target == null) return;
+        float distance = Vector2.Distance(transform.position, target.position);
+        if (!isAttacking)
+        {
+            if(distance > attRange)
+            {
+                Vector3 direction = (target.position - transform.position).normalized;
+                moveDirection = direction;
+            }
+            else
+            {
+                moveDirection = Vector2.zero;
+                StartCoroutine(Attack());
+            }
         }
 
     }
@@ -48,20 +69,34 @@ public class enemy : MonoBehaviour
     {
         rb.linearVelocity= new Vector2(moveDirection.x,moveDirection.y)*movespeed;
     }
-    public void TakeDamge(float damage){
+    public void TakeDamge(float damage)
+    {
         health -= damage;
         StartCoroutine(Flash());
 
-        if(health <=0){
-            DropItem();
+        if (health <= 0)
+        {
             Destroy(gameObject);
         }
     }
-    private void DropItem(){
-        if(Vase != null){
-            Instantiate(Vase, transform.position, Quaternion.identity);
+    private IEnumerator Attack()
+    {
+        isAttacking = true;
+        Debug.Log("Enemy Attacks");
+        if (attackHitbox != null)
+        {
+            attackHitbox.gameObject.SetActive(true);
         }
+        yield return new WaitForSeconds(attduration);
+        if (attackHitbox != null)
+        attackHitbox.gameObject.SetActive(false);
+
+    // Wait for cooldown before next attack
+        yield return new WaitForSeconds(attCool);
+        isAttacking = false;
+
     }
+
     private IEnumerator Flash(){
         if(sprite != null){
             sprite.color  = flashColor;

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Person : MonoBehaviour
 {
     public Person() { }
-    public int takeDamage(int damage, int defense)
+    public int TakeDamage(int damage, int defense)
     {
         int damageTaken = damage - defense;
         if (damageTaken > 0)
