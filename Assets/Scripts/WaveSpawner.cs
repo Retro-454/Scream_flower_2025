@@ -9,9 +9,16 @@ public class WaveSpawner : MonoBehaviour
     private int currentWaveIndex = 0;
     private int enemiesAlive;
     public CameraController cameraController;
-    private void Start()
+    private bool inprogress = false;
+
+    public void StartWave()
     {
-        StartCoroutine(SpawnWave());
+        if (!inprogress)
+        {
+            inprogress = true;
+            StartCoroutine(SpawnWave());
+        }
+        
     }
     private IEnumerator SpawnWave()
     {
@@ -49,6 +56,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 cameraController.lockMovement = false;
             }
+            inprogress = false;
             currentWaveIndex++;
             StartCoroutine(SpawnWave());
         }
