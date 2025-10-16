@@ -23,12 +23,14 @@ public class enemy : MonoBehaviour
     private bool isAttacking = false;
     public EnemyAttackHitbox attackHitbox;
     public float attduration = 0.5f;
+    private Vector3 originalScale;
 
 
     private void Awake()
     {
-      rb = GetComponent<Rigidbody2D>();   
-      sprite = GetComponent<SpriteRenderer>();
+      rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+      originalScale = transform.localScale; 
     }
 
 
@@ -49,6 +51,8 @@ public class enemy : MonoBehaviour
     void Update()
     {
         if (target == null) return;
+
+        FlipTowardsPlayer();
         float distance = Vector2.Distance(transform.position, target.position);
         if (!isAttacking)
         {
@@ -104,14 +108,29 @@ public class enemy : MonoBehaviour
             sprite.color = originalColor;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision){
-    if (collision.gameObject.CompareTag("Player")){
-        player playerScript = collision.gameObject.GetComponent<player>();
-        if (playerScript != null){
-            playerScript.TakeDamage(attackDamage);
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player playerScript = collision.gameObject.GetComponent<player>();
+            if (playerScript != null)
+            {
+                playerScript.TakeDamage(attackDamage);
+            }
         }
     }
+private void FlipTowardsPlayer()
+{
+    if (target == null) return;
+
+    float direction = target.position.x - transform.position.x;
+
+    if (direction > 0) // player is to the right
+        transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+    else if (direction < 0) // player is to the left
+        transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
 }
+
 
 
 }
