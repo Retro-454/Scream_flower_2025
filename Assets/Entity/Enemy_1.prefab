@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 3497685990508768698}
   serializedVersion: 2
   m_LocalRotation: {x: -0.093795344, y: 0.09346205, z: -0.7021271, w: 0.699632}
-  m_LocalPosition: {x: 0.10033, y: 0.21333, z: 0}
-  m_LocalScale: {x: 0.023223428, y: 0.03866782, z: 1}
+  m_LocalPosition: {x: 0.817, y: 0.5955, z: 0}
+  m_LocalScale: {x: 0.08361532, y: 0.20205368, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9001956938090514325}
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.44, y: 3.780369}
+    oldSize: {x: 10.849999, y: 4.330423}
     newSize: {x: 10.44, y: 3.780369}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -180,8 +180,8 @@ Transform:
   m_GameObject: {fileID: 8056328223114112893}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.8594, y: -4.16, z: 0}
-  m_LocalScale: {x: 5.026424, y: 5.413607, z: 1}
+  m_LocalPosition: {x: 4.9114, y: -4.3137, z: 0}
+  m_LocalScale: {x: 2.2336006, y: 2.0120482, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5357659729330863400}
@@ -234,12 +234,12 @@ SpriteRenderer:
   m_SortingLayerID: -1065135825
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2848709574632610534, guid: a1640c1edbddf4b9bb63a84c5b865ba9, type: 3}
+  m_Sprite: {fileID: 3301891800020582221, guid: 7b6313ff5b838654695cec9c83018492, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.89411765}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.21, y: 0.35}
+  m_Size: {x: 0.69, y: 1.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -306,8 +306,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.019891802, y: 0.19041145}
-  m_Size: {x: 0.16329065, y: 0.3551016}
+  m_Offset: {x: -0.00943621, y: 0.56379634}
+  m_Size: {x: 0.6581882, y: 1.2274956}
   m_Direction: 0
 --- !u!95 &4004337530883157462
 Animator:
@@ -349,7 +349,7 @@ MonoBehaviour:
   attackDamage: 15
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
-  attRange: 1
+  attRange: 3
   attCool: 2
   attackHitbox: {fileID: 6254111924665839972}
   attduration: 0.5
