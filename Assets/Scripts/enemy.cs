@@ -1,5 +1,7 @@
 using System.Collections;
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class enemy : MonoBehaviour
@@ -27,6 +29,11 @@ public class enemy : MonoBehaviour
 
     public WaveSpawner spawner;
 
+    //stun and knockback
+    public float stunDuration = 0.3f;
+     private bool isStunned = false;
+    private int hitcount = 0;
+
 
 
     private void Awake()
@@ -53,7 +60,7 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target == null) return;
+        if (target == null|| isStunned) return;
 
         FlipTowardsPlayer();
         float distance = Vector2.Distance(transform.position, target.position);
@@ -74,13 +81,29 @@ public class enemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (isStunned){
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
         rb.linearVelocity= new Vector2(moveDirection.x,moveDirection.y)*movespeed;
     }
     public void TakeDamage(float damage)
     {
         health -= damage;
+        hitcount++;
         StartCoroutine(Flash());
 
+        rb.linearVelocity = Vector2.zero;
+
+        if(hitcount >= 3)
+        {
+            hitcount = 0;
+            StartCoroutine(Counter());
+        }
+        else
+        {
+            StartCoroutine(Stun());
+        }
         if (health <= 0)
         {
             Die();
@@ -88,6 +111,7 @@ public class enemy : MonoBehaviour
     }
     private IEnumerator Attack()
     {
+        if (isStunned) yield break;
         isAttacking = true;
         Debug.Log("Enemy Attacks");
         if (attackHitbox != null)
@@ -113,26 +137,46 @@ public class enemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        
+            player playerS = collision.gameObject.GetComponent<player>();
+            if (playerS != null)
         {
-            player playerScript = collision.gameObject.GetComponent<player>();
-            if (playerScript != null)
-            {
-                playerScript.TakeDamage(attackDamage);
-            }
+                
+                Vector2 hitDir = (playerS.transform.position - transform.position).normalized;
+                playerS.TakeDamage(attackDamage);
+            
         }
     }
-private void FlipTowardsPlayer()
-{
-    if (target == null) return;
+    private void FlipTowardsPlayer()
+    {
+        if (target == null) return;
 
-    float direction = target.position.x - transform.position.x;
+        float direction = target.position.x - transform.position.x;
 
-    if (direction > 0) // player is to the right
-        transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-    else if (direction < 0) // player is to the left
-        transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
-}
+        if (direction > 0) // player is to the right
+            transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+        else if (direction < 0) // player is to the left
+            transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+    }
+    private IEnumerator Stun()
+    {
+        isStunned = true;
+        rb.linearVelocity = Vector2.zero;
+        yield return new WaitForSeconds(stunDuration);
+        Debug.Log("Enemy stunned");
+        isStunned = false;
+    }
+    private IEnumerator Counter()
+    {
+        isStunned = true;
+        rb.linearVelocity = Vector2.zero;
+        Debug.Log("Counter begins");
+
+        yield return new WaitForSeconds(0.3f);
+
+        StartCoroutine(Attack());
+        isStunned = false;
+    }
 
 
 public void Die()

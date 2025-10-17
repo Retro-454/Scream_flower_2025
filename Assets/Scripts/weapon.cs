@@ -8,7 +8,7 @@ public class weapon : MonoBehaviour
     {
         enemy enemy1 = collision.GetComponent<enemy>();
         if(enemy1 != null){
-            enemy1.TakeDamage(damage);
+          //  enemy1.TakeDamage(damage);
         }
     }
 }
