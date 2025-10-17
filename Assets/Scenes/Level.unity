@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -135, y: -303}
+  m_AnchoredPosition: {x: -163, y: -172}
   m_SizeDelta: {x: 800, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &33779397
@@ -496,8 +496,8 @@ Transform:
   m_GameObject: {fileID: 527772561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.2591, y: 2.5855, z: 0}
-  m_LocalScale: {x: 3.8135386, y: 1.3863372, z: 1}
+  m_LocalPosition: {x: 18.2591, y: 2.7644, z: 0}
+  m_LocalScale: {x: 3.8135386, y: 1.4142026, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1287,7 +1287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1327443854}
   - component: {fileID: 1327443853}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrier (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,7 +1310,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
