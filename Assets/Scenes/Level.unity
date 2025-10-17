@@ -511,6 +511,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1357077690198120845, guid: 07f18f8f18bb04432aeb7937c392e3d2, type: 3}
+      propertyPath: isFinal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357077690198120845, guid: 07f18f8f18bb04432aeb7937c392e3d2, type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 1010557765}
@@ -2118,7 +2122,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1357077690198120845, guid: 07f18f8f18bb04432aeb7937c392e3d2, type: 3}
       propertyPath: isFinal
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1357077690198120845, guid: 07f18f8f18bb04432aeb7937c392e3d2, type: 3}
       propertyPath: cameraController
