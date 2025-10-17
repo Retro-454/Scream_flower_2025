@@ -58,27 +58,49 @@ public class enemy : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+   void Update()
+{
+    if (target == null || isStunned) return;
+
+    FlipTowardsPlayer();
+    float distance = Vector2.Distance(transform.position, target.position);
+
+    if (!isAttacking)
     {
-        if (target == null|| isStunned) return;
-
-        FlipTowardsPlayer();
-        float distance = Vector2.Distance(transform.position, target.position);
-        if (!isAttacking)
+        if (distance > attRange)
         {
-            if(distance > attRange)
-            {
-                Vector3 direction = (target.position - transform.position).normalized;
-                moveDirection = direction;
-            }
-            else
-            {
-                moveDirection = Vector2.zero;
-                StartCoroutine(Attack());
-            }
-        }
+            Vector3 direction = (target.position - transform.position).normalized;
 
+            // 🧠 Separation force: avoid other enemies
+            Vector3 separation = Vector3.zero;
+            float separationRadius = 1.5f; // distance to keep between enemies
+            float separationStrength = 2f; // how strongly to push away
+
+            foreach (enemy other in FindObjectsOfType<enemy>())
+            {
+                if (other == this) continue;
+                float dist = Vector2.Distance(transform.position, other.transform.position);
+                if (dist < separationRadius)
+                {
+                    Vector3 away = (transform.position - other.transform.position).normalized / dist;
+                    separation += away * (separationRadius - dist);
+                }
+            }
+
+            // Apply separation
+            direction += separation * separationStrength;
+            direction.Normalize();
+
+            moveDirection = direction;
+        }
+        else
+        {
+            moveDirection = Vector2.zero;
+            StartCoroutine(Attack());
+        }
     }
+}
+
     private void FixedUpdate()
     {
         if (isStunned){
@@ -95,7 +117,7 @@ public class enemy : MonoBehaviour
 
         rb.linearVelocity = Vector2.zero;
 
-        if(hitcount >= 3)
+        if(hitcount >= 1)
         {
             hitcount = 0;
             StartCoroutine(Counter());
@@ -172,10 +194,15 @@ public class enemy : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         Debug.Log("Counter begins");
 
-        yield return new WaitForSeconds(0.3f);
-
-        StartCoroutine(Attack());
+        if(sprite != null)
+        {
+            sprite.color = Color.yellow;
+        }
+        yield return new WaitForSeconds(0.5f);
         isStunned = false;
+        yield return StartCoroutine(Attack());
+        isStunned = false;
+        Debug.Log("counter done");
     }
 
 

@@ -287,13 +287,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a15c44ec65d749a1bc4c71d808e3f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 2.5
   p: {fileID: 0}
-  health: 50
-  maxHealth: 50
+  health: 99
+  maxHealth: 100
   defense: 10
-  attackDamage: 15
-  invincibilityDuration: 1
+  attackDamage: 20
+  invincibilityDuration: 2
   flashInterval: 0.1
 --- !u!61 &4904550857211438936
 BoxCollider2D:

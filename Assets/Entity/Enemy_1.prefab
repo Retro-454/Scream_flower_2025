@@ -343,15 +343,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523219dcf7f624ef19865cfb7e193aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 5
+  movespeed: 2.5
   health: 50
   maxHealth: 10
   attackDamage: 15
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
   attRange: 2
-  attCool: 3.65
+  attCool: 5
   attackHitbox: {fileID: 6254111924665839972}
-  attduration: 0.5
+  attduration: 0.3
   spawner: {fileID: 0}
-  stunDuration: 0.3
+  stunDuration: 1.5
