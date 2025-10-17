@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class WaveSpawner : MonoBehaviour
     private int enemiesAlive;
     public CameraController cameraController;
     private bool inprogress = false;
+    public bool isFinal = false;
 
     public void StartWave()
     {
@@ -58,7 +60,17 @@ public class WaveSpawner : MonoBehaviour
             }
             inprogress = false;
             currentWaveIndex++;
-            StartCoroutine(SpawnWave());
+            if(currentWaveIndex >= waves.Length)
+            {
+                if (isFinal)
+                {
+                    SceneManager.LoadScene("EndScene");
+                }
+            }
+            else
+            {
+                StartCoroutine(SpawnWave());
+            }
         }
     }
 }

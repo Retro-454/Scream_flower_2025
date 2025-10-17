@@ -68,7 +68,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.022269249, y: -0.21801805}
+  m_Offset: {x: 0.45704365, y: -0.21801805}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -78,7 +78,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 10.827711, y: 3.9791522}
+  m_Size: {x: 11.786337, y: 3.9791522}
   m_EdgeRadius: 0
 --- !u!212 &2189011972822199527
 SpriteRenderer:
@@ -287,13 +287,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a15c44ec65d749a1bc4c71d808e3f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 2.5
   p: {fileID: 0}
-  health: 50
-  maxHealth: 50
+  health: 99
+  maxHealth: 100
   defense: 10
-  attackDamage: 15
-  invincibilityDuration: 1
+  attackDamage: 20
+  invincibilityDuration: 2
   flashInterval: 0.1
 --- !u!61 &4904550857211438936
 BoxCollider2D:
@@ -329,7 +329,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.02249901, y: 0.6134842}
+  m_Offset: {x: 0.0025162697, y: 0.4946527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.49200052, y: 0.037015375}
@@ -339,7 +339,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.4550604, y: 1.2193831}
+  m_Size: {x: 0.72188985, y: 1.1096927}
   m_EdgeRadius: 0
 --- !u!95 &177401777382604435
 Animator:

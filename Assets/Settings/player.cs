@@ -25,6 +25,8 @@ public class player : MonoBehaviour
     private float flashTimer;
     private bool isfacingright;
 
+  
+
 
 
     void Start()
@@ -100,7 +102,11 @@ public class player : MonoBehaviour
 {
     if (isInvincible) return; // Ignore if player is invincible
 
-    health -= damage;
+        health -= damage;
+    
+    Rigidbody2D rb = GetComponent<Rigidbody2D>();
+    rb.linearVelocity = Vector2.zero;
+    
     if (health <= 0)
     {
         Die();

@@ -9,7 +9,8 @@ public class P_attackhitbox : MonoBehaviour
     
             enemy foe = collision.GetComponent<enemy>();
             if (foe != null)
-            {
+        {
+                
                 foe.TakeDamage(attackDamage);
             }
 

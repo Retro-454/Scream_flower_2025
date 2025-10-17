@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 3497685990508768698}
   serializedVersion: 2
   m_LocalRotation: {x: -0.093795344, y: 0.09346205, z: -0.7021271, w: 0.699632}
-  m_LocalPosition: {x: 0.817, y: 0.5955, z: 0}
-  m_LocalScale: {x: 0.08361532, y: 0.20205368, z: 1}
+  m_LocalPosition: {x: 0.5879, y: 0.635, z: 0}
+  m_LocalScale: {x: 0.0479283, y: 0.29031852, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9001956938090514325}
@@ -68,7 +68,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.09436107, y: 0.71699333}
+  m_Offset: {x: 0.094361305, y: -0.12128377}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -78,7 +78,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12.366743, y: 5.1786165}
+  m_Size: {x: 12.366743, y: 3.502061}
   m_EdgeRadius: 0
 --- !u!114 &6254111924665839972
 MonoBehaviour:
@@ -306,8 +306,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.00943621, y: 0.56379634}
-  m_Size: {x: 0.6581882, y: 1.2274956}
+  m_Offset: {x: -0.001470155, y: 0.5571641}
+  m_Size: {x: 1.0166609, y: 1.4176245}
   m_Direction: 0
 --- !u!95 &4004337530883157462
 Animator:
@@ -343,14 +343,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523219dcf7f624ef19865cfb7e193aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 5
+  movespeed: 2.5
   health: 50
-  maxHealth: 2
+  maxHealth: 10
   attackDamage: 15
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.1
-  attRange: 3
-  attCool: 2
+  attRange: 2
+  attCool: 5
   attackHitbox: {fileID: 6254111924665839972}
-  attduration: 0.5
+  attduration: 0.3
   spawner: {fileID: 0}
+  stunDuration: 1.5
